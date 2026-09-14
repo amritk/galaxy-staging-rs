@@ -1,0 +1,165 @@
+# Demo API (Scalar Galaxy) Rust API
+
+Complete reference of every operation, grouped by resource. See [the README](./README.md) for usage and configuration.
+
+## Contents
+
+- [`Planets`](#planets)
+  - [Get all planets](#get-all-planets)
+  - [Create a planet](#create-a-planet)
+  - [Get a planet](#get-a-planet)
+  - [Update a planet](#update-a-planet)
+  - [Delete a planet](#delete-a-planet)
+  - [Upload an image to a planet](#upload-an-image-to-a-planet)
+- [`CelestialBodies`](#celestialbodies)
+  - [Create a celestial body](#create-a-celestial-body)
+- [`Authentication`](#authentication)
+  - [Create a user](#create-a-user)
+  - [Get a token](#get-a-token)
+  - [Get authenticated user](#get-authenticated-user)
+
+## Setup
+
+```rust
+use demo_api_scalar_galaxy::*;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let client = DemoApiScalarGalaxyClient::from_env()?;
+
+    // ... the samples below go here
+
+    Ok(())
+}
+```
+
+## `Planets`
+
+Everything about planets
+
+### Get all planets
+
+It's easy to say you know them all, but do you really? Retrieve all the planets and check whether you missed one.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`PlanetsListResponse`](./src/models/planets.rs) |
+
+```rust
+let response = client.planets().list().send().await?;
+```
+
+### Create a planet
+
+Time to play god and create a new planet. What do you think? Ah, don't think too much. What could go wrong anyway?
+
+| Direction | Type |
+| --- | --- |
+| Request | [`Planet`](./src/models/planets.rs) |
+| Response | [`Planet`](./src/models/planets.rs) |
+
+```rust
+let response = client.planets().create().send().await?;
+```
+
+### Get a planet
+
+You'll better learn a little bit more about the planets. It might come in handy once space travel is available for everyone.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`Planet`](./src/models/planets.rs) |
+
+```rust
+let response = client.planets().retrieve(1).send().await?;
+```
+
+### Update a planet
+
+Sometimes you make mistakes, that's fine. No worries, you can update all planets.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`Planet`](./src/models/planets.rs) |
+| Response | [`Planet`](./src/models/planets.rs) |
+
+```rust
+let response = client.planets().update(1).send().await?;
+```
+
+### Delete a planet
+
+This endpoint was used to delete planets. Unfortunately, that caused a lot of trouble for planets with life. So, this endpoint is now deprecated and should not be used anymore.
+
+| Direction | Type |
+| --- | --- |
+| Response | `()` |
+
+```rust
+client.planets().delete(1).send().await?;
+```
+
+### Upload an image to a planet
+
+Got a crazy good photo of a planet? Share it with the world!
+
+| Direction | Type |
+| --- | --- |
+| Response | [`PlanetsUploadImageResponse`](./src/models/planets.rs) |
+
+```rust
+let response = client.planets().upload_image(1).send().await?;
+```
+
+## `CelestialBodies`
+
+Celestial bodies are the planets and satellites in the Scalar Galaxy.
+
+### Create a celestial body
+
+| Direction | Type |
+| --- | --- |
+| Request | [`CelestialBody`](./src/models/celestial_bodies.rs) |
+| Response | [`CelestialBody`](./src/models/celestial_bodies.rs) |
+
+## `Authentication`
+
+Some endpoints are public, but some require authentication. We provide all the required endpoints to create an account and authorize yourself.
+
+### Create a user
+
+Time to create a user account, eh?
+
+| Direction | Type |
+| --- | --- |
+| Request | [`AuthenticationCreateUserBody`](./src/models/authentication.rs) |
+| Response | [`User`](./src/models/authentication.rs) |
+
+```rust
+let response = client.authentication().create_user().send().await?;
+```
+
+### Get a token
+
+Yeah, this is the boring security stuff. Just get your super secret token and move on.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`Credentials`](./src/models/authentication.rs) |
+| Response | [`Token`](./src/models/authentication.rs) |
+
+```rust
+let response = client.authentication().create_token().send().await?;
+```
+
+### Get authenticated user
+
+Find yourself they say. That's what you can do here.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`User`](./src/models/authentication.rs) |
+
+```rust
+let response = client.authentication().list_me().send().await?;
+```
