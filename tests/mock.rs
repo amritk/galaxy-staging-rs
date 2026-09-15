@@ -7,8 +7,8 @@
 
 use std::time::Duration;
 
-use demo_api_scalar_galaxy::transport::{BoxFuture, InstantSleep, MockTransport, SdkBody, Transport, TransportError};
-use demo_api_scalar_galaxy::*;
+use amritk_galaxy_staging::transport::{BoxFuture, InstantSleep, MockTransport, SdkBody, Transport, TransportError};
+use amritk_galaxy_staging::*;
 
 /// A response body the generated decode layer accepts for the operation
 /// under test.

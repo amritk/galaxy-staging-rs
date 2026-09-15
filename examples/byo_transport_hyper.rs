@@ -16,8 +16,8 @@ use hyper_util::client::legacy::Client;
 use hyper_util::client::legacy::connect::HttpConnector;
 use hyper_util::rt::TokioExecutor;
 
-use demo_api_scalar_galaxy::transport::{BoxFuture, SdkBody, Transport, TransportError, TransportErrorKind};
-use demo_api_scalar_galaxy::*;
+use amritk_galaxy_staging::transport::{BoxFuture, SdkBody, Transport, TransportError, TransportErrorKind};
+use amritk_galaxy_staging::*;
 
 /// Environment variable naming the server the guarded `main` dials.
 const BASE_URL_ENV: &str = "OFFICIAL-GALAXY-TESTING_BASE_URL";

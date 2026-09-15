@@ -1,11 +1,13 @@
 [package]
-name = "demo-api-scalar-galaxy"
-version = "0.1.0" # x-release-please-version
+name = "amritk-galaxy-staging"
+version = "0.2.0" # x-release-please-version
 edition = "2024"
 rust-version = "1.85"
 description = "Rust library to access the Demo API (Scalar Galaxy)"
 authors = ["Demo API Scalar Galaxy"]
 license = "Apache-2.0"
+repository = "https://github.com/amritk/galaxy-staging-rs"
+homepage = "https://github.com/amritk/galaxy-staging-rs"
 keywords = ["api", "sdk", "client"]
 categories = ["api-bindings"]
 

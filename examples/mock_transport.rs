@@ -10,8 +10,8 @@
 //! ```
 #![allow(unused)]
 
-use demo_api_scalar_galaxy::transport::{InstantSleep, MockTransport};
-use demo_api_scalar_galaxy::*;
+use amritk_galaxy_staging::transport::{InstantSleep, MockTransport};
+use amritk_galaxy_staging::*;
 
 /// A response body the generated decode layer accepts for the operation
 /// this example drives.

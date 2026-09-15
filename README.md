@@ -10,14 +10,14 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-demo-api-scalar-galaxy = "0.1.0" # x-release-please-version
+amritk-galaxy-staging = "0.2.0" # x-release-please-version
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 ```
 
 Or install via cargo:
 
 ```sh
-cargo add demo-api-scalar-galaxy
+cargo add amritk-galaxy-staging
 cargo add tokio --features rt-multi-thread,macros
 ```
 
@@ -27,7 +27,7 @@ The client is asynchronous, with `reqwest` as the default HTTP backend
 (swappable — see "Bring your own HTTP client" below):
 
 ```rust,ignore
-use demo_api_scalar_galaxy::*;
+use amritk_galaxy_staging::*;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -50,7 +50,7 @@ The builder accepts every credential this API takes, and `from_env` reads
 them from the environment instead:
 
 ```rust,no_run
-use demo_api_scalar_galaxy::DemoApiScalarGalaxyClient;
+use amritk_galaxy_staging::DemoApiScalarGalaxyClient;
 
 async fn run() -> Result<(), Box<dyn std::error::Error>> {
     let client = DemoApiScalarGalaxyClient::builder()
@@ -119,7 +119,7 @@ result of `send().await` to distinguish API errors (with status and decoded
 body) from transport and decoding failures:
 
 ```rust,no_run
-use demo_api_scalar_galaxy::Error;
+use amritk_galaxy_staging::Error;
 
 fn report<T>(result: Result<T, Error>) {
     match result {
@@ -142,8 +142,8 @@ Every request flows through the `transport::Transport` trait — one
 configured client:
 
 ```rust,no_run
-use demo_api_scalar_galaxy::DemoApiScalarGalaxyClient;
-use demo_api_scalar_galaxy::transport::ReqwestTransport;
+use amritk_galaxy_staging::DemoApiScalarGalaxyClient;
+use amritk_galaxy_staging::transport::ReqwestTransport;
 
 fn configure() -> Result<(), Box<dyn std::error::Error>> {
     let http_client = reqwest::Client::builder().build()?;
@@ -158,7 +158,7 @@ To replace reqwest entirely, implement `Transport` for your backend and
 drop the default features:
 
 ```sh
-cargo add demo-api-scalar-galaxy --no-default-features --features tokio
+cargo add amritk-galaxy-staging --no-default-features --features tokio
 ```
 
 Re-enabling the `reqwest` feature on top of `--no-default-features` also
@@ -179,11 +179,11 @@ response queue and full request capture, so tests drive the real client
 without a network:
 
 ```sh
-cargo add --dev demo-api-scalar-galaxy --features mock
+cargo add --dev amritk-galaxy-staging --features mock
 ```
 
 ```rust,ignore
-use demo_api_scalar_galaxy::transport::{InstantSleep, MockTransport};
+use amritk_galaxy_staging::transport::{InstantSleep, MockTransport};
 
 let mock = MockTransport::new();
 mock.enqueue(200, r#"{"id":"example"}"#);
@@ -213,14 +213,14 @@ credential the client could not obtain — a failed OAuth token exchange that
 another configured credential covered for — is reported at `warn`.
 
 ```sh
-cargo add demo-api-scalar-galaxy --features tracing
+cargo add amritk-galaxy-staging --features tracing
 ```
 
 This crate emits events only and never installs a subscriber — your binary
 does that, e.g. with `tracing-subscriber`:
 
 ```sh
-RUST_LOG=demo_api_scalar_galaxy=debug cargo run
+RUST_LOG=amritk_galaxy_staging=debug cargo run
 ```
 
 Credentials never reach an event: URLs are logged with their query string
@@ -260,7 +260,7 @@ on Windows. To use the platform TLS stack (Schannel, Secure Transport)
 instead:
 
 ```sh
-cargo add demo-api-scalar-galaxy --no-default-features --features reqwest,native-tls
+cargo add amritk-galaxy-staging --no-default-features --features reqwest,native-tls
 ```
 
 ## Reusing the client
