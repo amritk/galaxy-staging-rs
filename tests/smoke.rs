@@ -6,7 +6,7 @@
 //! bare `cargo test` just confirms the generated surface compiles.
 #![allow(unused)]
 
-use demo_api_scalar_galaxy::*;
+use amritk_galaxy_staging::*;
 
 #[tokio::test]
 async fn smoke() {

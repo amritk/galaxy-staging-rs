@@ -71,7 +71,7 @@ pub use crate::transport_reqwest::ReqwestTransport;
 /// ```no_run
 /// use std::sync::Arc;
 ///
-/// use demo_api_scalar_galaxy::transport::{BoxFuture, SdkBody, Transport, TransportError, TransportErrorKind};
+/// use amritk_galaxy_staging::transport::{BoxFuture, SdkBody, Transport, TransportError, TransportErrorKind};
 ///
 /// #[derive(Debug)]
 /// struct MyTransport;
@@ -619,7 +619,7 @@ pub mod multipart {
     /// # Examples
     ///
     /// ```
-    /// use demo_api_scalar_galaxy::transport::multipart::Upload;
+    /// use amritk_galaxy_staging::transport::multipart::Upload;
     ///
     /// let upload = Upload::from_bytes("hello world")
     ///     .filename("greeting.txt")
@@ -994,7 +994,7 @@ pub mod multipart {
 /// # Examples
 ///
 /// ```no_run
-/// use demo_api_scalar_galaxy::transport::{MockTransport, SdkBody, Transport};
+/// use amritk_galaxy_staging::transport::{MockTransport, SdkBody, Transport};
 ///
 /// # async fn demo() {
 /// let mock = MockTransport::new();

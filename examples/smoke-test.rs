@@ -8,7 +8,7 @@
 //! `SCALAR_SMOKE_FILTER` of comma-separated operation/path substrings.
 #![allow(unused)]
 
-use demo_api_scalar_galaxy::*;
+use amritk_galaxy_staging::*;
 
 #[derive(serde::Serialize)]
 struct SmokeResult {
